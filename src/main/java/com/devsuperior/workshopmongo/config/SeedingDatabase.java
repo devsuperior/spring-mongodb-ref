@@ -25,15 +25,17 @@ public class SeedingDatabase implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		userRepository.deleteAll();
+		postRepository.deleteAll();
 
 		User maria = new User(null, "Maria Brown", "maria@gmail.com");
 		User alex = new User(null, "Alex Green", "alex@gmail.com");
 		User bob = new User(null, "Bob Grey", "bob@gmail.com");
 		
-		Post post1 = new Post(null, Instant.parse("2022-03-21T18:35:24.00Z"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", maria);
-		Post post2 = new Post(null, Instant.parse("2022-03-23T17:30:24.00Z"), "Bom dia", "Acordei feliz hoje!", maria);
-				
 		userRepository.saveAll(Arrays.asList(maria, alex, bob));
+		
+		Post post1 = new Post(null, Instant.parse("2022-03-21T18:35:24.00Z"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", maria.getId(), maria.getName());
+		Post post2 = new Post(null, Instant.parse("2022-03-23T17:30:24.00Z"), "Bom dia", "Acordei feliz hoje!", maria.getId(), maria.getName());
+				
 		postRepository.saveAll(Arrays.asList(post1, post2));
 	}
 

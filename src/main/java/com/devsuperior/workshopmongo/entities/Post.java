@@ -15,18 +15,27 @@ public class Post implements Serializable {
 	private Instant date;
 	private String title;
 	private String body;
-	private User author;
+	private Author author;
 	
 	public Post() {
 	}
 
-	public Post(String id, Instant date, String title, String body, User author) {
+	public Post(String id, Instant date, String title, String body, Author author) {
 		super();
 		this.id = id;
 		this.date = date;
 		this.title = title;
 		this.body = body;
 		this.author = author;
+	}
+	
+	public Post(String id, Instant date, String title, String body, String idAuthor, String nameAuthor) {
+		super();
+		this.id = id;
+		this.date = date;
+		this.title = title;
+		this.body = body;
+		this.author = new Author(idAuthor, nameAuthor);
 	}
 
 	public String getId() {
@@ -61,11 +70,11 @@ public class Post implements Serializable {
 		this.body = body;
 	}
 
-	public User getAuthor() {
+	public Author getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(User author) {
+	public void setAuthor(Author author) {
 		this.author = author;
 	}
 
@@ -87,4 +96,39 @@ public class Post implements Serializable {
 				&& Objects.equals(date, other.date) && Objects.equals(id, other.id)
 				&& Objects.equals(title, other.title);
 	}
+}
+
+class Author {
+	
+	private String id;
+	private String name;
+	
+	public Author() {
+	}
+
+	public Author(String id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+	
+	public Author(User entity) {
+		id = entity.getId();
+		name = entity.getName();
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}	
 }
