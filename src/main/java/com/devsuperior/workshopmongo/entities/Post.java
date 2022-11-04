@@ -77,6 +77,14 @@ public class Post implements Serializable {
 	public void setAuthor(Author author) {
 		this.author = author;
 	}
+	
+	public String getAuthorId() {
+		return author.getId();
+	}
+	
+	public String getAuthorName() {
+		return author.getName();
+	}
 
 	@Override
 	public int hashCode() {
