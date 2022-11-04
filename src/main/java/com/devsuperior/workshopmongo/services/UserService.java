@@ -1,7 +1,6 @@
 package com.devsuperior.workshopmongo.services;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,21 +23,36 @@ public class UserService {
 		List<UserDTO> result = repository.findAll().stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
 		return result;
 	}
-	
+
 	@Transactional(readOnly = true)
 	public UserDTO findById(String id) {
-		User user = repository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Recurso não encontrado"));
+		User user = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado"));
 		return new UserDTO(user);
 	}
-	
+
 	@Transactional
-    public UserDTO insert(UserDTO dto) {
-        User entity = new User();
-        copyDtoToEntity(dto, entity);
-        entity = repository.save(entity);
-        return new UserDTO(entity);
-    }
+	public UserDTO insert(UserDTO dto) {
+		User entity = new User();
+		copyDtoToEntity(dto, entity);
+		entity = repository.save(entity);
+		return new UserDTO(entity);
+	}
+
+	@Transactional
+	public UserDTO update(String id, UserDTO dto) {
+		User entity = repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado"));
+		copyDtoToEntity(dto, entity);
+		entity = repository.save(entity);
+		return new UserDTO(entity);
+	}
+
+	@Transactional
+	public void delete(String id) {
+		User entity = repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado"));
+		repository.delete(entity);
+	}
 
 	private void copyDtoToEntity(UserDTO dto, User entity) {
 		entity.setName(dto.getName());
