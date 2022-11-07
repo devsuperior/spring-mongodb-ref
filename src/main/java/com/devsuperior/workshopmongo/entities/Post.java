@@ -1,6 +1,5 @@
 package com.devsuperior.workshopmongo.entities;
 
-import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
@@ -8,7 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "post")
-public class Post implements Serializable {
+public class Post {
 
 	@Id
 	private String id;
@@ -29,13 +28,13 @@ public class Post implements Serializable {
 		this.author = author;
 	}
 	
-	public Post(String id, Instant date, String title, String body, String idAuthor, String nameAuthor) {
+	public Post(String id, Instant date, String title, String body, String authorId, String authorName) {
 		super();
 		this.id = id;
 		this.date = date;
 		this.title = title;
 		this.body = body;
-		this.author = new Author(idAuthor, nameAuthor);
+		this.author = new Author(authorId, authorName);
 	}
 
 	public String getId() {

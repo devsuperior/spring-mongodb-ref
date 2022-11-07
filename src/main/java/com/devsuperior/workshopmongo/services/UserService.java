@@ -1,7 +1,6 @@
 package com.devsuperior.workshopmongo.services;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +20,7 @@ public class UserService {
 
 	@Transactional(readOnly = true)
 	public List<UserDTO> findAll() {
-		List<UserDTO> result = repository.findAll().stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
+		List<UserDTO> result = repository.findAll().stream().map(x -> new UserDTO(x)).toList();
 		return result;
 	}
 
@@ -30,11 +29,11 @@ public class UserService {
 		User user = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado"));
 		return new UserDTO(user);
 	}
-	
+
 	@Transactional(readOnly = true)
 	public List<PostDTO> findPosts(String id) {
 		User user = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado"));
-		List<PostDTO> result = user.getPosts().stream().map(x -> new PostDTO(x)).collect(Collectors.toList());
+		List<PostDTO> result = user.getPosts().stream().map(x -> new PostDTO(x)).toList();
 		return result;
 	}
 

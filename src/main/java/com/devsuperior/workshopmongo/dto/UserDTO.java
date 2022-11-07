@@ -1,13 +1,11 @@
 package com.devsuperior.workshopmongo.dto;
 
-import java.io.Serializable;
 import java.util.List;
 
 import com.devsuperior.workshopmongo.entities.User;
 
-public class UserDTO implements Serializable {
-	private static final long serialVersionUID = 1L;
-	
+public class UserDTO {
+		
 	private String id;
 	private String name;
 	private String email;
@@ -56,9 +54,5 @@ public class UserDTO implements Serializable {
 	
 	public User toEntity(String id, String name, String email) {
 		return new User(id, name, email);
-	}
-
-	public List<PostDTO> getPosts() {
-		return posts;
 	}
 }

@@ -1,6 +1,5 @@
 package com.devsuperior.workshopmongo.entities;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -10,8 +9,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "user")
-public class User implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class User {
 	
 	@Id
 	private String id;
