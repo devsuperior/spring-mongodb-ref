@@ -9,7 +9,6 @@ public class AuthorDTO {
 	}
 
 	public AuthorDTO(String id, String name) {
-		super();
 		this.id = id;
 		this.name = name;
 	}

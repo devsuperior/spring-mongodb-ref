@@ -1,6 +1,8 @@
 package com.devsuperior.workshopmongo.entities;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
@@ -16,11 +18,12 @@ public class Post {
 	private String body;
 	private Author author;
 	
+	private List<Comment> comments = new ArrayList<>();
+	
 	public Post() {
 	}
 
 	public Post(String id, Instant date, String title, String body, Author author) {
-		super();
 		this.id = id;
 		this.date = date;
 		this.title = title;
@@ -29,7 +32,6 @@ public class Post {
 	}
 	
 	public Post(String id, Instant date, String title, String body, String authorId, String authorName) {
-		super();
 		this.id = id;
 		this.date = date;
 		this.title = title;
@@ -85,6 +87,15 @@ public class Post {
 		return author.getName();
 	}
 
+	public List<Comment> getComments() {
+		return comments;
+	}
+	
+	public void addComment(String CommentText, Instant commentDate, String authorId, String authorName) {
+		Comment comment = new Comment(CommentText, date, authorId, authorName);
+		comments.add(comment);
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(author, body, date, id, title);
@@ -138,4 +149,50 @@ class Author {
 	public void setName(String name) {
 		this.name = name;
 	}	
+}
+
+class Comment {
+	
+	private String text;
+	private Instant date;
+	private Author author;
+	
+	public Comment() {
+	}
+
+	public Comment(String text, Instant date, Author author) {
+		this.text = text;
+		this.date = date;
+		this.author = author;
+	}
+	
+	public Comment(String text, Instant date, String authorId, String authorName) {
+		this.text = text;
+		this.date = date;
+		this.author = new Author(authorId, authorName);
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public Instant getDate() {
+		return date;
+	}
+
+	public void setDate(Instant date) {
+		this.date = date;
+	}
+
+	public Author getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Author author) {
+		this.author = author;
+	}
 }
