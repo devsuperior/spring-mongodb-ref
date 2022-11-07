@@ -1,5 +1,6 @@
 package com.devsuperior.workshopmongo.services;
 
+import java.time.Instant;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,14 @@ public class PostService {
 	
 	public List<PostDTO> findByTitle(String text) {
 		List<PostDTO> result = repository.searchTitle(text).stream().map(x -> new PostDTO(x)).toList();
+		return result;
+	}
+	
+	public List<PostDTO> fullSearch(String text, Instant minDate, Instant maxDate) {
+		maxDate = maxDate.plusSeconds(86400); // 24 * 60 * 60
+		System.out.println("maxDate: " + maxDate);
+		System.out.println("minDate: " + minDate);
+		List<PostDTO> result = repository.fullSearch(text, minDate, maxDate).stream().map(x -> new PostDTO(x)).toList();
 		return result;
 	}
 }
