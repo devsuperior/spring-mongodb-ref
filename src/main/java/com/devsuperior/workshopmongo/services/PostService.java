@@ -31,8 +31,6 @@ public class PostService {
 	
 	public List<PostDTO> fullSearch(String text, Instant minDate, Instant maxDate) {
 		maxDate = maxDate.plusSeconds(86400); // 24 * 60 * 60
-		System.out.println("maxDate: " + maxDate);
-		System.out.println("minDate: " + minDate);
 		List<PostDTO> result = repository.fullSearch(text, minDate, maxDate).stream().map(x -> new PostDTO(x)).toList();
 		return result;
 	}
