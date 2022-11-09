@@ -7,7 +7,7 @@ https://www.getpostman.com/collections/ceb708b3cac4b7121cc3
 host: http://localhost:8080
 ```
 ## Domain Model
-![Image](https://github.com/devsuperior/spring-mongodb-ref/blob/main/model-spring-mongodb.png "Modelo conceitual")
+![Image](https://github.com/devsuperior/spring-mongodb-ref/blob/main/assets/model-spring-mongodb.png "Modelo conceitual")
 
 ## Includes
 The following features are preconfigured.
