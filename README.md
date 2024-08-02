@@ -2,7 +2,7 @@
 >  *This repository aims to provide the Reference project spring boot and mongodb to be used in DevSuperior courses*
 
 ## Postman Collection and Environment:
-https://www.getpostman.com/collections/ceb708b3cac4b7121cc3
+(download from the main folder of this repository, then import it into your Postman)
 ```
 host: http://localhost:8080
 ```
@@ -25,3 +25,4 @@ The following features are preconfigured.
 
 ### Spring Boot versions
 - 3.0.0-RC1
+- 3.2.8
