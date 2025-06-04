@@ -3,12 +3,12 @@ package com.devsuperior.workshopmongo.repositories;
 import java.time.Instant;
 import java.util.List;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
+import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 
 import com.devsuperior.workshopmongo.entities.Post;
 
-public interface PostRepository extends MongoRepository<Post, String>{
+public interface PostRepository extends ReactiveMongoRepository<Post, String>{
 	
 	@Query("{ 'title': { $regex: ?0, $options: 'i' } }")
 	List<Post> searchTitle(String text);

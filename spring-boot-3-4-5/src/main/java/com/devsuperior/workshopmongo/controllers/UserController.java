@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.devsuperior.workshopmongo.dto.PostDTO;
 import com.devsuperior.workshopmongo.dto.UserDTO;
@@ -26,6 +25,7 @@ public class UserController {
 	@Autowired
 	private UserService service;
 
+	/*
 	@GetMapping
 	public ResponseEntity<List<UserDTO>> findAll() {
 		List<UserDTO> list = service.findAll();
@@ -62,4 +62,5 @@ public class UserController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+	*/
 }
